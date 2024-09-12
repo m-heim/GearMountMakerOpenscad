@@ -3,7 +3,7 @@
 include <BOSL2-master/std.scad>
 include <BOSL2-master/gears.scad>
 
-$fn=91;
+$fn=70;
 
 // mod = module
 // teeth = amount of teeth
@@ -41,7 +41,17 @@ module gear(mod, teeth, height, hole_diameter, hole_filed_distance, hole_filed_h
     }
 }
 
+module filing(height, width, length, diameter, filing) {
+    
+    difference() {
+        translate([-width/2, -length/2, 0])
+        cube([width, length, height]);
+        translate([width/2 +filing - diameter/2, 0, 0])
+        cylinder(h=height, r=diameter/2);
+    }
+}
 //gear(1, 11, 4, 3.6, 0.4, 4, 1.5, 4, 4.1, 7);
-gear(1, 38, 4, 4.53, 1, 0, 0, 0, 4.5, 0);
-translate([0, 0, 4])
-gear(1, 11, 4, 4.53, 1, 0, 0, 0, 0, 0);
+//gear(1, 38, 4, 4.53, 1, 0, 0, 0, 4.5, 0);
+//translate([0, 0, 4])
+//gear(1, 11, 4, 4.53, 1, 0, 0, 0, 0, 0);
+filing(150, 8, 8, 4.3, 1);
